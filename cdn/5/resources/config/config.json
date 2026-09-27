@@ -54,9 +54,11 @@
     "layout_2": {
       "type": "FIXED",
       "order": [
-        "4",
+        "7",
+        "6",
         "3",
         "1",
+        "5",
         "0",
         "2"
       ],
@@ -84,9 +86,21 @@
           "bbox": {},
           "setting": {}
         },
-        "4": {
+        "5": {
           "type": "WIDGET",
-          "widgetId": "widget_64",
+          "widgetId": "widget_65",
+          "bbox": {},
+          "setting": {}
+        },
+        "6": {
+          "type": "WIDGET",
+          "widgetId": "widget_66",
+          "bbox": {},
+          "setting": {}
+        },
+        "7": {
+          "type": "WIDGET",
+          "widgetId": "widget_68",
           "bbox": {},
           "setting": {}
         }
@@ -1211,7 +1225,7 @@
       "id": "widget_3",
       "uri": "widgets/common/text/",
       "config": {
-        "text": "<h6><strong style=\"color: var(--sys-color-primary-text); font-size: 20px;\">﻿Print Export Designer Widget</strong></h6>",
+        "text": "<h6><strong style=\"font-size: 20px; color: var(--sys-color-primary-text);\">﻿Experience Builder Widgets</strong></h6>",
         "placeholder": "<h6><strong style=\"font-size: 20px; color: var(--sys-color-primary-text);\">Double click to edit text</strong></h6>",
         "style": {
           "verticalAlign": "center",
@@ -2218,14 +2232,210 @@
         "widget_6"
       ]
     },
-    "widget_64": {
-      "uri": "widgets/print-export-widget/",
+    "widget_65": {
+      "uri": "widgets/arcgis/draw/",
       "version": "1.21.0",
-      "label": "Print / Export",
+      "label": "Draw",
+      "config": {
+        "arrangement": "Panel",
+        "drawMode": "continuous",
+        "drawingTools": [
+          "point",
+          "polyline",
+          "polygon",
+          "rectangle",
+          "circle",
+          "text"
+        ],
+        "layerListMode": "hide",
+        "measurementsInfo": {
+          "enableMeasurements": false,
+          "fontsColor": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "fontsSize": 12,
+          "haloColor": [
+            255,
+            255,
+            255,
+            1
+          ],
+          "haloSize": 2,
+          "decimalPlaces": {
+            "point": 5,
+            "line": 3,
+            "area": 3
+          }
+        },
+        "measurementsUnitsInfos": [],
+        "drawingElevationMode3D": "on-the-ground",
+        "drawOptions": {
+          "snappingMode": "Flexible",
+          "tooltipEnabled": true,
+          "defaultTooltipEnabled": false,
+          "segmentLabelEnabled": false,
+          "defaultSegmentLabelEnabled": false,
+          "geometryGuidesEnabled": true,
+          "defaultGeometryGuidesEnabled": false,
+          "featureToFeatureEnabled": true,
+          "defaultFeatureToFeatureEnabled": false,
+          "gridEnabled": true,
+          "defaultGridEnabled": false,
+          "defaultSnappingLayers": [],
+          "enableImport": false,
+          "enableExport": false
+        }
+      },
+      "id": "widget_65"
+    },
+    "widget_66": {
+      "uri": "widgets/save-experience-state/",
+      "version": "1.21.0",
+      "label": "Save Experience State",
+      "config": {
+        "restoreOnReopen": true,
+        "restoreMode": "prompt",
+        "includePage": true,
+        "includeViews": true,
+        "includeWindow": true,
+        "includeMapExtent": true,
+        "includeLayerVisibility": true,
+        "includeBasemap": true,
+        "includeDrawings": true,
+        "enableLocalSaves": true,
+        "maxLocalSaves": 20,
+        "enableFileExport": true,
+        "enableFileImport": true
+      },
+      "id": "widget_66"
+    },
+    "widget_68": {
+      "uri": "widgets/print-studio/",
+      "version": "1.21.0",
+      "icon": {
+        "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewBox=\"0 0 16 16\"><path fill=\"#C5C5C5\" fill-rule=\"evenodd\" d=\"M2.4.8V4h-.8A1.6 1.6 0 0 0 0 5.6v3.2a1.6 1.6 0 0 0 1.136 1.532c.249.075.464-.143.464-.403 0-.182-.154-.323-.32-.396A.8.8 0 0 1 .8 8.8V5.6a.8.8 0 0 1 .8-.8h12.8a.8.8 0 0 1 .8.8v3.2a.8.8 0 0 1-.48.733c-.166.073-.32.214-.32.396 0 .26.215.478.464.403A1.6 1.6 0 0 0 16 8.8V5.6A1.6 1.6 0 0 0 14.4 4h-.8V.8a.8.8 0 0 0-.8-.8H3.2a.8.8 0 0 0-.8.8m10.4 0H3.2V4h9.6z\" clip-rule=\"evenodd\"></path><path fill=\"#C5C5C5\" d=\"M5.2 10.4a.4.4 0 0 0 0 .8h5.6a.4.4 0 0 0 0-.8zM5.2 12.8a.4.4 0 0 0 0 .8h3.2a.4.4 0 0 0 0-.8z\"></path><path fill=\"#C5C5C5\" fill-rule=\"evenodd\" d=\"M2.4 15.2V8.8H2A.4.4 0 0 1 2 8h12a.4.4 0 0 1 0 .8h-.4v6.4a.8.8 0 0 1-.8.8H3.2a.8.8 0 0 1-.8-.8m10.4-6.4v6.4H3.2V8.8z\" clip-rule=\"evenodd\"></path><path fill=\"#C5C5C5\" d=\"M12 6c0-.22.18-.4.4-.4h.8a.4.4 0 0 1 0 .8h-.8A.4.4 0 0 1 12 6\"></path></svg>",
+        "properties": {
+          "filename": "WidgetPrintOutlined",
+          "originalName": "outlined/brand/widget-print.svg",
+          "path": [
+            "brand",
+            "WidgetPrintOutlined"
+          ],
+          "inlineSvg": true,
+          "isUploaded": false,
+          "color": ""
+        }
+      },
+      "label": "Print Studio",
       "config": {
         "templates": [
           {
-            "id": "3948457c-0945-4074-aa4f-05ee77e1535a",
+            "id": "default",
+            "name": "Map Export",
+            "pageSize": "letter",
+            "orientation": "portrait",
+            "elements": [
+              {
+                "id": "mapFrame",
+                "name": "Map frame",
+                "type": "mapFrame",
+                "x": 40,
+                "y": 120,
+                "w": 1195,
+                "h": 1350,
+                "zIndex": 0,
+                "locked": true,
+                "visible": true
+              },
+              {
+                "id": "title",
+                "name": "Title",
+                "type": "text",
+                "x": 40,
+                "y": 30,
+                "w": 900,
+                "h": 70,
+                "zIndex": 1,
+                "locked": false,
+                "visible": true,
+                "text": "Map Title",
+                "fontFamily": "Arial",
+                "fontSize": 32,
+                "fontWeight": 700,
+                "color": "#000000",
+                "align": "left",
+                "editableAtRuntime": true
+              },
+              {
+                "id": "logo",
+                "name": "Logo",
+                "type": "image",
+                "x": 1000,
+                "y": 20,
+                "w": 235,
+                "h": 80,
+                "zIndex": 2,
+                "locked": true,
+                "visible": true,
+                "source": "upload",
+                "lockAspect": true
+              },
+              {
+                "id": "legend",
+                "name": "Legend",
+                "type": "legend",
+                "x": 40,
+                "y": 1480,
+                "w": 300,
+                "h": 120,
+                "zIndex": 3,
+                "locked": true,
+                "visible": true,
+                "autoFitHeight": false,
+                "strokeColor": "#999999",
+                "strokeWidth": 1,
+                "fill": {
+                  "enabled": true,
+                  "color": "#ffffff"
+                }
+              },
+              {
+                "id": "scaleBar",
+                "name": "Scale bar",
+                "type": "scaleBar",
+                "x": 380,
+                "y": 1540,
+                "w": 300,
+                "h": 40,
+                "zIndex": 4,
+                "locked": true,
+                "visible": true,
+                "unit": "km",
+                "style": "line"
+              },
+              {
+                "id": "northArrow",
+                "name": "North arrow",
+                "type": "northArrow",
+                "x": 1150,
+                "y": 1480,
+                "w": 85,
+                "h": 85,
+                "zIndex": 5,
+                "locked": true,
+                "visible": true,
+                "style": "classic",
+                "color": "#000000",
+                "rotation": 0,
+                "syncToMapRotation": true
+              }
+            ]
+          },
+          {
+            "id": "780c52d5-4923-4fcb-b60a-442a4a8d9bd8",
             "name": "A4 Landscape",
             "pageSize": "a4",
             "orientation": "landscape",
@@ -2314,18 +2524,22 @@
                 "columns": 1
               },
               {
-                "id": "scaleBar",
-                "name": "Scale bar",
-                "type": "scaleBar",
-                "x": 1440.6817768895348,
-                "y": 910.278873887173,
-                "w": 214.50848246729657,
-                "h": 59.44225222565406,
+                "id": "40956fa3-6b63-4294-8211-ecb00d1d606a",
+                "x": 1401.6213565127211,
+                "y": 904.2823390751852,
+                "w": 292.6293232209241,
+                "h": 49.91762069078181,
                 "zIndex": 5,
-                "locked": false,
                 "visible": true,
+                "locked": false,
+                "name": "Scale bar 1",
+                "type": "scaleBar",
                 "unit": "km",
                 "style": "alternating",
+                "fill": {
+                  "enabled": false,
+                  "color": "#ffffff"
+                },
                 "align": "center"
               },
               {
@@ -2355,7 +2569,7 @@
                 "locked": false,
                 "name": "Notes",
                 "type": "text",
-                "text": "Notes:\n",
+                "text": "Notes:\nThis map is a demonstration of a template designed within an Experience Builder widget at design time and modified at run time.\nElements can be added or modified at design time or runtime.\n",
                 "fontFamily": "Arial",
                 "fontSize": 16,
                 "fontWeight": 400,
@@ -2375,7 +2589,7 @@
                 "locked": false,
                 "name": "Subtitle",
                 "type": "text",
-                "text": "Sub Title",
+                "text": "Map with selected cities and a selected USA State",
                 "fontFamily": "Arial",
                 "fontSize": 16,
                 "fontWeight": 400,
@@ -2411,7 +2625,8 @@
                 "fill": {
                   "enabled": true,
                   "color": "#ffffff"
-                }
+                },
+                "fontSize": 7
               },
               {
                 "id": "34798088-51ad-4375-b2f2-f695b5e3b704",
@@ -2449,10 +2664,10 @@
                 }
               }
             ],
-            "portalItemId": "21ba4c5feaf547759767f3084c8860ff"
+            "portalItemId": "5f31b0c5e83a478390e170445a1bcbc3"
           },
           {
-            "id": "b1f6461d-daf8-42a9-af0b-750f1e5f69d7",
+            "id": "c7530e72-6481-417f-87ca-043676cb0229",
             "name": "A4 Portrait",
             "pageSize": "letter",
             "orientation": "portrait",
@@ -2591,7 +2806,7 @@
             "portalItemId": "7eb1feab3ba14a1fa7f926362744afb1"
           },
           {
-            "id": "fd3ca3b4-9a50-4c9a-a30b-bf709554f40a",
+            "id": "c67667b8-4dbf-452d-9a38-4e2d4d3abff2",
             "name": "A4 Basic",
             "pageSize": "a4",
             "orientation": "portrait",
@@ -2629,9 +2844,10 @@
           }
         ],
         "allowViewerLayoutEdit": true,
-        "allowViewerAddElements": true
+        "allowViewerAddElements": true,
+        "allowViewerCreateTemplates": true
       },
-      "id": "widget_64",
+      "id": "widget_68",
       "useMapWidgetIds": [
         "widget_6"
       ]
@@ -2884,7 +3100,7 @@
   "attributes": {
     "portalUrl": "https://MooshMaps.maps.arcgis.com"
   },
-  "timestamp": 1790436747492,
+  "timestamp": 1790526824226,
   "sharedThemeVariables": null,
   "mainLocale": "en-au",
   "dataSources": {
