@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Save Experience State user guide</title>
+<meta name="description" content="How to save, restore and share experience states with Save Experience State in ArcGIS Experience Builder.">
+<style>
+  :root {
+    --bg: #fbfaf9; --surface: #ffffff; --text: #1f1d1b; --muted: #5f5a55; --border: #e2ddd8;
+    --accent: #6a14a8; --accent-soft: #f3ebfa; --code-bg: #f1eeeb; --placeholder: #f6f2ee;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1b1a19; --surface: #232220; --text: #ece9e6; --muted: #a9a39d; --border: #3a3733;
+      --accent: #c89bf0; --accent-soft: #2e2536; --code-bg: #2c2a27; --placeholder: #292725;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1b1a19; --surface: #232220; --text: #ece9e6; --muted: #a9a39d; --border: #3a3733;
+    --accent: #c89bf0; --accent-soft: #2e2536; --code-bg: #2c2a27; --placeholder: #292725;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  a { color: var(--accent); }
+  header.site { background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 16px; }
+  header.site .inner { max-width: 1120px; margin: 0 auto; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  header.site .brand { font-weight: 650; }
+  .layout { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; display: grid; grid-template-columns: 1fr; gap: 32px; }
+  nav.toc { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; margin-top: 24px; }
+  nav.toc h2 { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; padding: 0; border: 0; }
+  nav.toc ol { margin: 0; padding-left: 20px; }
+  nav.toc li { margin: 4px 0; }
+  main { min-width: 0; max-width: 72ch; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 32px 0 16px; }
+  h2 { font-size: 1.45rem; margin: 48px 0 12px; padding-top: 8px; border-top: 1px solid var(--border); scroll-margin-top: 16px; }
+  h3 { font-size: 1.15rem; margin: 32px 0 8px; scroll-margin-top: 16px; }
+  h4 { font-size: 1rem; margin: 24px 0 8px; }
+  code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; font-size: .9em; }
+  .table-wrap { overflow-x: auto; margin: 16px 0; }
+  table { border-collapse: collapse; width: 100%; background: var(--surface); font-size: .95rem; }
+  th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: var(--accent-soft); }
+  figure { margin: 20px 0; }
+  figure img { display: block; max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 6px; }
+  figcaption { color: var(--muted); font-size: .9rem; margin-top: 6px; }
+  figure.missing div { display: flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center; text-align: center;
+    min-height: 160px; padding: 16px; border: 2px dashed var(--border); border-radius: 6px; background: var(--placeholder); color: var(--muted); }
+  figure.missing strong { color: var(--text); }
+  @media (min-width: 960px) {
+    .layout { grid-template-columns: 240px 1fr; }
+    nav.toc { position: sticky; top: 16px; align-self: start; max-height: calc(100vh - 32px); overflow: auto; }
+  }
+  @media print {
+    header.site, nav.toc { display: none; }
+    .layout { display: block; }
+    h2 { break-after: avoid; }
+    figure { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+  <span class="brand">Save Experience State · User guide</span>
+  <a href="../../">← Back to the demo app</a>
+</div></header>
+<div class="layout">
+  <nav class="toc" aria-label="Contents"><h2>Contents</h2><ol><li><a href="#quick-start">Quick start</a></li><li><a href="#using-save-experience-state">Using Save Experience State</a></li><li><a href="#for-app-authors">For app authors</a></li><li><a href="#messages-and-troubleshooting">Messages and troubleshooting</a></li></ol></nav>
+  <main>
+<h1>Save Experience State user guide</h1>
+<p>Save Experience State lets you save where you are in an ArcGIS Experience Builder app and come back to it later. A saved state remembers the page you&#39;re on, the views and window that are open, and for each map: where it&#39;s zoomed to, which layers are switched on, the basemap, and any drawings you&#39;ve made with the Draw widget.</p>
+<p>This guide has two parts:</p>
+<ul>
+<li><strong><a href="#using-save-experience-state">Using Save Experience State</a></strong> is for anyone using an app that includes the widget.</li>
+<li><strong><a href="#for-app-authors">For app authors</a></strong> is for the person who builds the app.</li>
+</ul>
+<h2 id="quick-start">Quick start</h2>
+<ol>
+<li>Set the app up the way you want it: go to the page, zoom the map, turn layers on or off, draw.</li>
+<li>Open <strong>Save Experience State</strong>, type a name such as <em>Site visit, north block</em>, and click <strong>Save</strong> (or press <strong>Enter</strong>).</li>
+<li>Carry on working. Whenever you want to go back, click <strong>Restore</strong> (the curved arrow) next to the name.</li>
+</ol>
+<figure><img src="images/01-panel.png" alt="The Save Experience State widget with a name typed in and three saved states, each tagged Saved to file" loading="lazy"><figcaption>The Save Experience State widget with a name typed in and three saved states, each tagged Saved to file</figcaption></figure>
+<h2 id="using-save-experience-state">Using Save Experience State</h2>
+<h3 id="what-a-state-includes">What a state includes</h3>
+<p>Depending on how the app is set up, a saved state can include:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>What is saved</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Page</strong></td>
+<td>The page you&#39;re on.</td>
+</tr>
+<tr>
+<td><strong>Section views</strong></td>
+<td>The view showing in each section, for example the second slide of a slideshow.</td>
+</tr>
+<tr>
+<td><strong>Window</strong></td>
+<td>The window (pop-up panel) that&#39;s open, or that none is open.</td>
+</tr>
+<tr>
+<td><strong>Map viewpoint</strong></td>
+<td>Where each map is centred, its zoom or scale, and its rotation. If a map widget can switch between two maps, which one is showing.</td>
+</tr>
+<tr>
+<td><strong>Layer visibility</strong></td>
+<td>Which layers of the web map or web scene are switched on.</td>
+</tr>
+<tr>
+<td><strong>Basemap</strong></td>
+<td>The basemap of each map.</td>
+</tr>
+<tr>
+<td><strong>Drawings</strong></td>
+<td>Everything drawn with the Draw widget, including measurement labels.</td>
+</tr>
+</tbody></table></div>
+<p>The app&#39;s author may have switched some of these off. Anything not included is left as it is when you restore.</p>
+<h3 id="saving-a-state">Saving a state</h3>
+<p>Type a name in the <strong>State name</strong> box and click <strong>Save</strong>, or press <strong>Enter</strong>. If you leave the name empty, the state is named after the current date and time.</p>
+<p>A message confirms it, and the new state appears at the top of <strong>Saved states</strong>, with the date and time it was saved. The count beside the heading (for example <em>3 of 20</em>) shows how many states you have and how many you can keep.</p>
+<figure><img src="images/02-save.png" alt="The message confirming a saved state. The new state is at the top of the list, tagged Not saved to file, with a reminder above the list" loading="lazy"><figcaption>The message confirming a saved state. The new state is at the top of the list, tagged Not saved to file, with a reminder above the list</figcaption></figure>
+<h3 id="restoring-a-state">Restoring a state</h3>
+<p>Click <strong>Restore</strong> (the curved arrow) on the state&#39;s row. The app goes to the saved page, views and window, then updates each map: its basemap, drawings, layers and finally its viewpoint. A message confirms it, for example <em>Restored &quot;Site visit, north block&quot;.</em></p>
+<p><strong>Restoring replaces your current drawings</strong> with the ones in the state. A state saved with no drawings clears the map of drawings. If you want to keep what you&#39;ve drawn, save it as a state first.</p>
+<p>If the Draw widget hasn&#39;t been opened yet, the restored drawings appear in a map layer called <strong>Drawings</strong>. As soon as you open the Draw widget, they move into it and you can edit them as normal.</p>
+<h3 id="managing-saved-states">Managing saved states</h3>
+<p>Each row in <strong>Saved states</strong> has these buttons:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Button</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Restore</strong> (curved arrow)</td>
+<td>Goes back to this state.</td>
+</tr>
+<tr>
+<td><strong>Replace</strong> (disk)</td>
+<td>Overwrites this state with how the app is now. Asks <em>Replace &quot;…&quot; with the current state?</em> first.</td>
+</tr>
+<tr>
+<td><strong>Rename</strong> (pencil)</td>
+<td>Lets you type a new name. Press <strong>Enter</strong> to keep it, or <strong>Esc</strong> to cancel.</td>
+</tr>
+<tr>
+<td><strong>Save to file</strong> (down arrow)</td>
+<td>Downloads this one state as a <code>.json</code> file.</td>
+</tr>
+<tr>
+<td><strong>Delete</strong> (bin)</td>
+<td>Removes the state. Asks <em>Delete &quot;…&quot;?</em> first.</td>
+</tr>
+</tbody></table></div>
+<p>To answer a <em>Replace</em> or <em>Delete</em> question, click <strong>Yes</strong> or <strong>No</strong>. <strong>Esc</strong> also means No.</p>
+<figure><img src="images/03-state-row-saved.png" alt="A saved state with its Restore, Replace, Rename, Save to file and Delete buttons" loading="lazy"><figcaption>A saved state with its Restore, Replace, Rename, Save to file and Delete buttons</figcaption></figure>
+<figure><img src="images/03-state-row-delete.png" alt="The same row after clicking Delete, asking to confirm" loading="lazy"><figcaption>The same row after clicking Delete, asking to confirm</figcaption></figure>
+<h3 id="where-your-states-are-kept">Where your states are kept</h3>
+<p><strong>Saved states are kept in this browser only.</strong> They aren&#39;t saved to the app, so:</p>
+<ul>
+<li>you won&#39;t see them on another computer, or in another browser on the same computer;</li>
+<li>they&#39;re lost if you clear your browser&#39;s data (cookies and site data);</li>
+<li>other people using the app can&#39;t see them.</li>
+</ul>
+<p>To keep a copy, move states to another computer or share them with someone, save them to a file (see the next section).</p>
+<p>Under each state&#39;s date, a tag reminds you which states need saving to a file:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Tag</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><em>Not saved to file</em></td>
+<td>Saved in this browser and never saved to a file.</td>
+</tr>
+<tr>
+<td><em>Unsaved changes</em></td>
+<td>Saved to a file before, but renamed or replaced since.</td>
+</tr>
+<tr>
+<td><em>Saved to file</em></td>
+<td>Matches the last file you saved it to, or loaded it from.</td>
+</tr>
+</tbody></table></div>
+<p>While any state isn&#39;t in a saved file, a note under the <strong>Saved states</strong> heading says how many, for example <em>Saved in this browser only. 2 states aren&#39;t in a saved file. Download a state from its row, or use Export all, to keep a copy.</em> <strong>Save to file</strong> on a row saves one state; <strong>Export all</strong> saves them all at once.</p>
+<figure><img src="images/03-state-row.png" alt="A state tagged Not saved to file, with the Saved in this browser only reminder above the list" loading="lazy"><figcaption>A state tagged Not saved to file, with the Saved in this browser only reminder above the list</figcaption></figure>
+<p>The tags only appear when the app lets you save to a file. They know that a file was downloaded, not where you kept it, so a state stays <em>Saved to file</em> even if you later delete the file.</p>
+<h3 id="saving-states-to-a-file">Saving states to a file</h3>
+<ul>
+<li><strong>One state:</strong> click <strong>Save to file</strong> (the down arrow) on its row.</li>
+<li><strong>All states:</strong> click <strong>Export all</strong> beside the <strong>Saved states</strong> heading. A <strong>File name</strong> box appears, filled in with the app&#39;s title and today&#39;s date, for example <em>Harbour plan states 2026-09-28</em>. Change it if you like, then click <strong>Export 3 states</strong> (or press <strong>Enter</strong>). <strong>Cancel</strong> or <strong>Esc</strong> closes the box without saving.</li>
+</ul>
+<p>The file downloads to your computer. It&#39;s a small <code>.json</code> file you can keep, email or put on a shared drive.</p>
+<figure><img src="images/04-export-all.png" alt="The Export all box with a file name filled in and the Export 4 states button" loading="lazy"><figcaption>The Export all box with a file name filled in and the Export 4 states button</figcaption></figure>
+<h3 id="loading-states-from-a-file">Loading states from a file</h3>
+<p>Click <strong>Load from file</strong> and choose a <code>.json</code> file saved by this widget.</p>
+<ul>
+<li><strong>A file with one state</strong> is restored straight away, and also added to your saved states.</li>
+<li><strong>A file with several states</strong> (from <strong>Export all</strong>) adds them all to your saved states, without restoring any. Click <strong>Restore</strong> on the one you want. If the app doesn&#39;t keep a list of saved states, it can only load a file with one state.</li>
+</ul>
+<p>States loaded from a file are tagged <em>Saved to file</em>.</p>
+<p>If the file was saved from a different app, you&#39;ll see <em>This file was saved from a different experience.</em> Anything that exists in both apps, such as a map with the same layers, is still restored; the rest is skipped.</p>
+<h3 id="picking-up-where-you-left-off">Picking up where you left off</h3>
+<p>If the app is set up to remember your last session, the widget records how the app is about a second after each change. The next time you open the app in this browser, one of two things happens:</p>
+<ul>
+<li><strong>You&#39;re asked.</strong> A <strong>Restore experience state</strong> message appears in the widget. Click <strong>Restore</strong> to go back to where you were, or <strong>Dismiss</strong> to start fresh.</li>
+<li><strong>It&#39;s automatic.</strong> The app goes straight back to where you were, and the widget shows <em>Restored your last session.</em></li>
+</ul>
+<p>If the app opens with a splash window, it&#39;s closed when your session is restored.</p>
+<figure><img src="images/05-restore-banner.png" alt="The Restore experience state message at the top of the widget, with Restore and Dismiss buttons" loading="lazy"><figcaption>The Restore experience state message at the top of the widget, with Restore and Dismiss buttons</figcaption></figure>
+<p>The last session is separate from your saved states. It&#39;s replaced every time you use the app, so to keep a particular setup, save it as a named state.</p>
+<h2 id="for-app-authors">For app authors</h2>
+<p>This part explains how to add Save Experience State to an app in Experience Builder (Developer Edition).</p>
+<h3 id="adding-the-widget-to-an-app">Adding the widget to an app</h3>
+<ol>
+<li>In the builder, drag <strong>Save Experience State</strong> from the widget panel into your app.</li>
+<li>There&#39;s nothing to connect: it works with every Map widget in the app automatically.</li>
+<li>Choose its settings (below), then save and publish the app.</li>
+</ol>
+<p><strong>Where to put it:</strong> the last session is only recorded while the widget is loaded. If you use <strong>Allow to restore state upon reopening the experience</strong>, put the widget somewhere that loads with the app, such as on the page or in a sidebar panel that starts open, and not in a widget controller that starts closed.</p>
+<p>While you&#39;re designing the app, the widget&#39;s buttons are disabled and it shows <em>Saving and restoring states is available in live view and in the published experience.</em> Switch to <strong>Live view</strong>, or open the published app, to try it.</p>
+<h3 id="settings">Settings</h3>
+<figure><img src="images/06-settings-1.png" alt="The top of the settings panel: Experience state and Included in state" loading="lazy"><figcaption>The top of the settings panel: Experience state and Included in state</figcaption></figure>
+<figure><img src="images/06-settings-2.png" alt="The rest of the settings panel: the Drawings option, Browser storage and Files" loading="lazy"><figcaption>The rest of the settings panel: the Drawings option, Browser storage and Files</figcaption></figure>
+<h4>Experience state</h4>
+<ul>
+<li><strong>Allow to restore state upon reopening the experience</strong> (on by default): records the viewer&#39;s last session and offers it back next time (see <a href="#picking-up-where-you-left-off">Picking up where you left off</a>).</li>
+<li><strong>When reopened</strong>: <strong>Ask the user to restore</strong> (default) shows a message with <strong>Restore</strong> and <strong>Dismiss</strong>; <strong>Restore automatically</strong> restores without asking.</li>
+</ul>
+<p>This does the same job as Experience Builder&#39;s built-in option under <em>Settings → State &amp; URL parameters → Allow to restore state upon reopening the experience</em>, but also restores basemaps and drawings. <strong>If you use this one, turn the built-in one off</strong>, or viewers will be asked twice.</p>
+<h4>Included in state</h4>
+<p>Tick the items saved in each state: <strong>Page</strong>, <strong>Section views</strong>, <strong>Window</strong>, <strong>Map viewpoint</strong>, <strong>Layer visibility</strong>, <strong>Basemap</strong> and <strong>Drawings (Draw widget)</strong>. All are ticked by default. These apply to named states, files and the last session alike.</p>
+<p>Untick an item to leave it alone when states are restored. For example, untick <strong>Map viewpoint</strong> so that viewers can save which layers are on without the map jumping to another place.</p>
+<h4>Browser storage</h4>
+<ul>
+<li><strong>Allow saving named states</strong> (on by default): shows the name box, <strong>Save</strong> and the <strong>Saved states</strong> list.</li>
+<li><strong>Maximum saved states</strong> (default 20, up to 200): how many states each viewer can keep. When the list is full, the viewer must delete one before saving another, or before loading a file.</li>
+</ul>
+<h4>Files</h4>
+<ul>
+<li><strong>Allow saving to a .json file</strong> (on by default): shows <strong>Export all</strong>, the per-row <strong>Save to file</strong> button, and the tags that show which states are in a saved file. If named states are off, a <strong>Save to file</strong> button appears next to the name box instead, so viewers can still keep a state.</li>
+<li><strong>Allow loading from a .json file</strong> (on by default): shows <strong>Load from file</strong>.</li>
+</ul>
+<h3 id="what-isn39t-saved">What isn&#39;t saved</h3>
+<ul>
+<li><strong>Layers added with the Add Data widget.</strong> Add Data restores its own layers when the app is reopened. Only the layers in the web map or web scene have their visibility saved.</li>
+<li><strong>Selections, filters, pop-ups and widget settings</strong>, such as the features selected in a table or the options chosen in a query.</li>
+<li><strong>Anything in the last second before the tab is closed.</strong> Browsers don&#39;t guarantee storage writes that start while a page is closing.</li>
+</ul>
+<h2 id="messages-and-troubleshooting">Messages and troubleshooting</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>You see</th>
+<th>What it means / what to do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>The buttons are greyed out, with <em>Saving and restoring states is available in live view…</em></td>
+<td>You&#39;re in the builder. Switch to Live view or open the published app.</td>
+</tr>
+<tr>
+<td><em>No features are enabled. Configure this widget in the builder.</em></td>
+<td>The author has switched off all of the widget&#39;s options.</td>
+</tr>
+<tr>
+<td><em>State restored. 2 item(s) no longer exist in this experience and were skipped.</em></td>
+<td>The app has changed since the state was saved: a page, view, window or map in the state has been removed. Everything else was restored.</td>
+</tr>
+<tr>
+<td><em>You can save up to 20 states. Delete a state before saving a new one.</em></td>
+<td>The list is full. Delete a state (save it to a file first if you want to keep it). A file with more states than there&#39;s room for isn&#39;t loaded at all.</td>
+</tr>
+<tr>
+<td><em>Could not save to browser storage. It may be full or disabled.</em></td>
+<td>The browser won&#39;t store data for this site, for example in some private windows or when site data is blocked. Save to a file instead.</td>
+</tr>
+<tr>
+<td><em>The file is not valid JSON.</em> / <em>The file is not an experience state file.</em></td>
+<td>The file wasn&#39;t made by this widget, or has been edited. Choose another file.</td>
+</tr>
+<tr>
+<td><em>The file was created by a newer version of this widget.</em></td>
+<td>Ask the app&#39;s author to update the widget.</td>
+</tr>
+<tr>
+<td><em>The file does not contain any states.</em></td>
+<td>The file was exported from an empty list.</td>
+</tr>
+<tr>
+<td><em>This file contains 3 states. This app can only load a file with one state.</em></td>
+<td>The file came from <strong>Export all</strong>, but this app doesn&#39;t keep a list of saved states. Ask for a file of just the state you need (saved with <strong>Save to file</strong>).</td>
+</tr>
+<tr>
+<td><em>This file was saved from a different experience…</em></td>
+<td>The states were loaded, but anything that doesn&#39;t exist in this app was skipped.</td>
+</tr>
+<tr>
+<td>A state shows <em>Not saved to file</em> although I exported it earlier</td>
+<td>States saved before the tags were added to the widget have no record of their file. Save them to a file once more.</td>
+</tr>
+<tr>
+<td>My saved states have gone</td>
+<td>They&#39;re kept in the browser, and the browser data was cleared, or you&#39;re on another browser or computer. Load them from a saved file.</td>
+</tr>
+<tr>
+<td>My drawings disappeared after restoring</td>
+<td>Restoring replaces the current drawings with the state&#39;s. To avoid it, save a state before restoring another; you can then restore it to get your drawings back.</td>
+</tr>
+<tr>
+<td>Drawings appear in a <em>Drawings</em> layer, not in the Draw widget</td>
+<td>The Draw widget hasn&#39;t been opened yet. Open it and the drawings move into it.</td>
+</tr>
+<tr>
+<td>The app didn&#39;t go back to my last session</td>
+<td>The widget wasn&#39;t loaded during your last visit (for example it&#39;s in a closed widget controller), or the change was made just before closing the tab.</td>
+</tr>
+</tbody></table></div>
+
+  </main>
+</div>
+</body>
+</html>
