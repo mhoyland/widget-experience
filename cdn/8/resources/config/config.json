@@ -1128,11 +1128,11 @@
           "type": "WIDGET",
           "widgetId": "widget_3",
           "bbox": {
-            "left": "40.00px",
-            "right": "69.8%",
+            "left": "40px",
+            "right": "66.1%",
             "top": "12.5%",
             "bottom": "13.7%",
-            "width": "24.6%",
+            "width": "30.0%",
             "height": "73.8%"
           },
           "setting": {
@@ -1188,11 +1188,11 @@
           "type": "WIDGET",
           "widgetId": "widget_5",
           "bbox": {
-            "left": "62.5%",
-            "right": "50.00px",
+            "left": "53.1%",
+            "right": "50px",
             "top": "0.0%",
             "bottom": "0.0%",
-            "width": "33.4%",
+            "width": "42.0%",
             "height": "100.0%"
           },
           "setting": {
@@ -3106,7 +3106,7 @@
   "attributes": {
     "portalUrl": "https://MooshMaps.maps.arcgis.com"
   },
-  "timestamp": 1790657241052,
+  "timestamp": 1790817845214,
   "sharedThemeVariables": null,
   "mainLocale": "en-au",
   "dataSources": {
@@ -3117,5 +3117,14 @@
       "itemId": "dc1bf30d44f443ffa7cc8cccd53a88fb",
       "portalUrl": "https://MooshMaps.maps.arcgis.com"
     }
+  },
+  "analytics": {
+    "enable": true,
+    "google": {
+      "measurementId": "G-8EEK5C0L7R"
+    }
+  },
+  "cookieBanner": {
+    "uid": "cf6d6a90-bc86-11f1-baf5-2b1cd3fa4842"
   }
 }
